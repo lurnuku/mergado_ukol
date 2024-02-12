@@ -1,20 +1,118 @@
+@font-face {
+  font-family: "Aeonik-Regular";
+  src: url("./fonty/Aeonik-Regular.otf") format("woff2"),
+    url("./fonty/Aeonik-Regular.otf") format("woff");
+}
+
+/* toto všetko je pre tvoj desktop monitor,
+pre menšie notebookové monitory to sprav cez media query (?)*/
 body {
-  background-image: url("./dune.jpg");
+  background-image: url("./pics/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Aeonik-Regular", sans-serif !important;
+}
+
+.logoContainer {
+  padding-top: 0.5rem;
+}
+
+.logo {
+  width: 26%;
+  height: auto;
+}
+
+.grafy {
+  display: flex;
+  gap: 5px;
+}
+
+.obrazok1 {
+  background-image: url("./pics/01.png");
+  height: 150px;
+  width: 75%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.obrazok2 {
+  background-image: url("./pics/02.png");
+  height: 150px;
+  width: 137%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.obrazok3 {
+  background-image: url("./pics/03.png");
+  height: 150px;
+  width: 96%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.obrazok4 {
+  background-image: url("./pics/04.png");
+  height: 150px;
+  width: 182%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.obrazok5 {
+  background-image: url("./pics/05.png");
+  height: 150px;
+  width: 57%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .container {
-  margin: 5%;
+  margin: 1%;
   padding: 2%;
-  border: 1px solid #c6d1cd;
-  border-radius: 5px;
-  background-color: #f96332;
-  color: white;
+  border-radius: 30px;
+  background-color: #d6d8d0;
+  color: #000000;
+  opacity: 96%;
+  max-width: 78% !important;
+}
+
+.btn {
+  border: 1px solid black !important;
+  border-radius: 30px !important;
+  background-color: black !important;
+  color: white !important;
 }
 
 .container div {
-  padding-top: 20px;
+  padding-top: 2%;
+}
+
+.bottomContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.conversionContainer {
+  background-color: #f2ee5c;
+  width: 50%;
+  min-height: 100%;
+  padding: 1.5%;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.conversionContainer img {
+  width: 5%;
+}
+
+.bottomContainer p {
+  flex-flow: right;
 }
 
 .infoContainer {
-  margin-bottom: 45px;
+  display: flex;
+}
+
+.infoContainer p {
+  margin: 0px;
 }
