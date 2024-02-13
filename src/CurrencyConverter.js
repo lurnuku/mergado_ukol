@@ -8,7 +8,7 @@ import star from "./pics/star.png";
 
 const CurrencyConverter = () => {
   const date = new Date();
-  //použila som moment.js aby som dostala požadovaný formát aktuálneho dátumu pre API
+  //moment.js zaistí požadovaný formát aktuálneho dátumu pre API
   let currentDate = moment(date).format("MMMM Do YYYY, h:mm:ss a");
   let formattedDate = moment(date).format("YYYYMMDD");
 
@@ -78,14 +78,19 @@ const CurrencyConverter = () => {
         });
         console.log(premeneneValues);
 
-        // príklad: vieš, že 1 AUD je 16.37kc a 1 EUR je 26.22kc, kolko je potom 1 AUD v EUR?
+        //príklad: vieš, že 1 AUD je 16.37kc a 1 EUR je 26.22kc, kolko je potom 1 AUD v EUR?
       });
   }, [formattedDate]);
+
+  //conversion result
+  const [result, setResult] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(selectedValue1);
     console.log(selectedValue2);
+
+    //sem výpočet meny setResult
   };
 
   return (
@@ -161,7 +166,7 @@ const CurrencyConverter = () => {
           <div className="conversionContainer">
             <img src={star} alt="star"></img>
             <h5>Conversion result:</h5>
-            <h4>{amountValue}</h4>
+            <h4>{result}</h4>
           </div>
           <div className="infoContainer">
             <p>
