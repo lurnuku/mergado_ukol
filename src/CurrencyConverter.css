@@ -116,3 +116,15 @@ body {
 .infoContainer p {
   margin: 0px;
 }
+
+/* pre macbook pro 13-inch 2020 */
+
+@media only screen and (min-device-width: 1440px) and (max-device-width: 2560px) and (-webkit-min-device-pixel-ratio: 2) and (-webkit-max-device-pixel-ratio: 2) {
+  body {
+    background-size: 100vw 100vh;
+  }
+  .container {
+    margin: 10%;
+    max-width: 88% !important;
+  }
+}

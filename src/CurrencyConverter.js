@@ -12,7 +12,6 @@ const CurrencyConverter = () => {
   let currentDate = moment(date).format("MMMM Do YYYY, h:mm:ss a");
   let formattedDate = moment(date).format("YYYYMMDD");
 
-  const [currency, setCurrency] = useState([]);
   const [selectedValue1, setSelectedValue1] = useState("");
   const [selectedValue2, setSelectedValue2] = useState("");
 
@@ -36,7 +35,6 @@ const CurrencyConverter = () => {
 
     setAmountValue(e.target.value);
   };
-  console.log(amountValue);
   const handleChange1 = (e) => {
     setSelectedValue1(e.target.value);
   };
@@ -65,12 +63,12 @@ const CurrencyConverter = () => {
           acc[obj.kratky_nazev] = obj.dev_stred;
           return acc;
         }, {});
-        setCurrency(currencies);
+
         console.log(devProdejValues);
 
-        /* musíš previesť všetky desiredCurrencies na české koruny 
+        /* nejak previesť všetky desiredCurrencies na české koruny 
         a potom sa s tým už bude dať pracovať, 
-        tie následne zmeníš na tú jednu desired currency zo selectu */
+        tie následne zmeniť na tú jednu desired currency zo selectu */
 
         //pre každú value z objektu to vydeliť (?)
         const premeneneValues = {};
@@ -83,6 +81,12 @@ const CurrencyConverter = () => {
         // príklad: vieš, že 1 AUD je 16.37kc a 1 EUR je 26.22kc, kolko je potom 1 AUD v EUR?
       });
   }, [formattedDate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(selectedValue1);
+    console.log(selectedValue2);
+  };
 
   return (
     <div className="mainContainer">
@@ -119,11 +123,12 @@ const CurrencyConverter = () => {
               value={selectedValue1}
               onChange={handleChange1}
             >
-              <option value="AUD">AUD</option>
-              <option value="GBP">GBP</option>
-              <option value="BGN">BGN</option>
-              <option value="DKK">DKK</option>
-              <option value="EUR">EUR</option>
+              {/* ak je selected AUD tak dole disablne TO AUD */}
+              {selectedValue2 !== "AUD" && <option value="AUD">AUD</option>}
+              {selectedValue2 !== "GBP" && <option value="GBP">GBP</option>}
+              {selectedValue2 !== "BGN" && <option value="BGN">BGN</option>}
+              {selectedValue2 !== "DKK" && <option value="DKK">DKK</option>}
+              {selectedValue2 !== "EUR" && <option value="EUR">EUR</option>}
             </select>
           </div>
           <div>
@@ -136,15 +141,20 @@ const CurrencyConverter = () => {
               value={selectedValue2}
               onChange={handleChange2}
             >
-              <option value="AUD">AUD</option>
-              <option value="GBP">GBP</option>
-              <option value="BGN">BGN</option>
-              <option value="DKK">DKK</option>
-              <option value="EUR">EUR</option>
+              {selectedValue1 !== "AUD" && <option value="AUD">AUD</option>}
+              {selectedValue1 !== "GBP" && <option value="GBP">GBP</option>}
+              {selectedValue1 !== "BGN" && <option value="BGN">BGN</option>}
+              {selectedValue1 !== "DKK" && <option value="DKK">DKK</option>}
+              {selectedValue1 !== "EUR" && <option value="EUR">EUR</option>}
             </select>
           </div>
           <br />
-          <input type="submit" value="Convert" className="btn"></input>
+          <input
+            type="submit"
+            value="Convert"
+            className="btn"
+            onClick={handleSubmit}
+          ></input>
         </form>
         <br />
         <div className="bottomContainer">
