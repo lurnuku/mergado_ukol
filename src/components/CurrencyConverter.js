@@ -18,12 +18,24 @@ const CurrencyConverter = () => {
         return response.json();
       })
       .then((data) => {
-        //need to filter, because not all keys have currencies keys in them
-        const filteredData = data.filter((item) => "currencies" in item);
+        //delete duplicate keys in object, so we dont have 40x EUR
+        const uniqueCurrencies = new Set();
+        const filteredData = data.filter((item) => {
+          //not all items have "currencies"
+          if ("currencies" in item) {
+            const currencyKey = Object.keys(item.currencies)[0];
+            if (!uniqueCurrencies.has(currencyKey)) {
+              uniqueCurrencies.add(currencyKey);
+              return true;
+            }
+          }
+          return false;
+        });
+
         console.log(filteredData);
         const countriesData = filteredData.map((item) => {
           //we need to grab the key, so we are using Object.keys
-          return `${Object.keys(item.currencies)[0]}-${item.name.common}`;
+          return Object.keys(item.currencies)[0];
         });
         setCountriesData(countriesData);
       });
